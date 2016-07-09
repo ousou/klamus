@@ -1,5 +1,6 @@
-package repository;
+package klamus.repository;
 
+import klamus.entity.Composer;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
