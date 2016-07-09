@@ -20,23 +20,20 @@ public class Composer implements Serializable {
     private long composerId;
     private String lastName;
     private String firstNames;
-    private String lifespan;
     private String info;
 
     protected Composer() {}
 
-    public Composer(String lastName, String firstNames, String lifespan, String info) {
+    public Composer(String lastName, String firstNames, String info) {
         this.lastName = lastName;
         this.firstNames = firstNames;
-        this.lifespan = lifespan;
         this.info = info;
     }
 
-    public Composer(long composerId, String lastName, String firstNames, String lifespan, String info) {
+    public Composer(long composerId, String lastName, String firstNames, String info) {
         this.composerId = composerId;
         this.lastName = lastName;
         this.firstNames = firstNames;
-        this.lifespan = lifespan;
         this.info = info;
     }
 
@@ -52,18 +49,13 @@ public class Composer implements Serializable {
         return firstNames;
     }
 
-    public String getLifespan() {
-        return lifespan;
-    }
-
     public String getInfo() {
         return info;
     }
 
     @Override
     public String toString() {
-        return "Composer{" + "composerId=" + composerId + ", lastName=" + lastName + ", firstNames=" + firstNames + ", lifespan=" + lifespan + ", info=" + info + '}';
+        return "Composer{" + "composerId=" + composerId + ", lastName=" + lastName + ", firstNames=" + firstNames + ", info=" + info + '}';
     }
-
     
 }
