@@ -25,4 +25,9 @@ public class ComposerController {
     public List<Composer> get(@RequestParam(value="name") String name) {
         return repository.findByLastName(name);
     }
+    
+    @RequestMapping("/composer/getAll")
+    public Iterable<Composer> getAll() {
+        return repository.findAll();
+    }    
 }
