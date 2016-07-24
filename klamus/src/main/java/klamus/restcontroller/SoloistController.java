@@ -11,25 +11,25 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import klamus.entity.Composer;
-import klamus.repository.ComposerRepository;
+import klamus.entity.Soloist;
+import klamus.repository.SoloistRepository;
 
 @RestController
 @ComponentScan()
-public class ComposerController {
+public class SoloistController {
 
-    private static final String basePath = "/composer/";
+    private static final String basePath = "/soloist/";
     
     @Autowired
-    ComposerRepository repository;    
+    SoloistRepository repository;    
     
     @RequestMapping(basePath + "get")
-    public List<Composer> get(@RequestParam(value="name") String name) {
+    public List<Soloist> get(@RequestParam(value="name") String name) {
         return repository.findByLastName(name);
     }
     
     @RequestMapping(basePath + "getAll")
-    public Iterable<Composer> getAll() {
+    public Iterable<Soloist> getAll() {
         return repository.findAll();
     }    
 }
