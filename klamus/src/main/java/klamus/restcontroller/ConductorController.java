@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import klamus.entity.Conductor;
 import klamus.repository.ConductorRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @ComponentScan()
@@ -31,5 +35,13 @@ public class ConductorController {
     @RequestMapping(basePath + "getAll")
     public Iterable<Conductor> getAll() {
         return repository.findAll();
+    }
+    
+    @RequestMapping(value = basePath + "/save", method = RequestMethod.POST)
+    public ResponseEntity<Conductor> save(@RequestBody Conductor conductor) {
+
+        Conductor savedConductor = repository.save(conductor);
+
+        return new ResponseEntity<>(savedConductor, HttpStatus.OK);
     }    
 }
