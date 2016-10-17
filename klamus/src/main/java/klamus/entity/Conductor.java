@@ -30,8 +30,8 @@ public class Conductor implements Serializable {
 
     protected Conductor() {}
 
-    public Conductor(long composerId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
-        this.conductorId = composerId;
+    public Conductor(long conductorId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
+        this.conductorId = conductorId;
         this.lastName = lastName;
         this.firstNames = firstNames;
         this.info = info;
