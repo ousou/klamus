@@ -19,7 +19,7 @@ public class Conductor implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long conductorId;
+    private Long conductorId;
     private String lastName;
     private String firstNames;
     private String info;
@@ -30,7 +30,7 @@ public class Conductor implements Serializable {
 
     protected Conductor() {}
 
-    public Conductor(long conductorId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
+    public Conductor(Long conductorId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
         this.conductorId = conductorId;
         this.lastName = lastName;
         this.firstNames = firstNames;

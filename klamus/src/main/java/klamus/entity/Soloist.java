@@ -19,7 +19,7 @@ public class Soloist implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long soloistId;
+    private Long soloistId;
     private String lastName;
     private String firstNames;
     private String info;
@@ -30,7 +30,7 @@ public class Soloist implements Serializable {
 
     protected Soloist() {}
 
-    public Soloist(long soloistId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
+    public Soloist(Long soloistId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
         this.soloistId = soloistId;
         this.lastName = lastName;
         this.firstNames = firstNames;

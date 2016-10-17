@@ -18,7 +18,7 @@ public class Composer implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long composerId;
+    private Long composerId;
     private String lastName;
     private String firstNames;
     private String info;
@@ -29,7 +29,7 @@ public class Composer implements Serializable {
 
     protected Composer() {}
 
-    public Composer(long composerId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
+    public Composer(Long composerId, String lastName, String firstNames, String info, String description, Integer yearOfBirth, Integer yearOfDeath) {
         this.composerId = composerId;
         this.lastName = lastName;
         this.firstNames = firstNames;
