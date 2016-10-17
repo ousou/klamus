@@ -14,35 +14,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import klamus.entity.Soloist;
 import klamus.repository.SoloistRepository;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @ComponentScan()
+@RequestMapping("/soloist/")
 public class SoloistController {
-
-    private static final String basePath = "/soloist/";
     
     @Autowired
     SoloistRepository repository;    
     
-    @RequestMapping(basePath + "get")
-    public List<Soloist> get(@RequestParam(value="name") String name) {
+    @RequestMapping("get")
+    public List<Soloist> getByName(@RequestParam(value="name") String name) {
         return repository.findByLastName(name);
     }
     
-    @RequestMapping(basePath + "getAll")
+    @RequestMapping("getAll")
     public Iterable<Soloist> getAll() {
         return repository.findAll();
+    }
+    
+    @RequestMapping("{id}")
+    public Soloist getById(@PathVariable String id) {
+        return repository.findOne(Long.parseLong(id));
     }    
     
-    @RequestMapping(value = basePath + "/save", method = RequestMethod.POST)
-    public ResponseEntity<Soloist> save(@RequestBody Soloist soloist) {
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public ResponseEntity<?> save(@RequestBody Soloist soloist) {
 
         Soloist savedSoloist = repository.save(soloist);
 
-        return new ResponseEntity<>(savedSoloist, HttpStatus.OK);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(ServletUriComponentsBuilder
+                        .fromCurrentRequest().path("/{id}")
+                        .buildAndExpand(savedSoloist.getSoloistId()).toUri());
+        return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
+//        return new ResponseEntity<>(savedSoloist, HttpStatus.OK);
     }    
 }
