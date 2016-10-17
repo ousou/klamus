@@ -12,35 +12,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import klamus.entity.Composer;
 import klamus.repository.ComposerRepository;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @ComponentScan()
+@RequestMapping("/composer/")
 public class ComposerController {
-
-    private static final String basePath = "/composer/";
 
     @Autowired
     ComposerRepository repository;
 
-    @RequestMapping(basePath + "get")
+    @RequestMapping("get")
     public List<Composer> get(@RequestParam(value = "name") String name) {
         return repository.findByLastName(name);
     }
 
-    @RequestMapping(basePath + "getAll")
+    @RequestMapping("getAll")
     public Iterable<Composer> getAll() {
         return repository.findAll();
     }
 
-    @RequestMapping(value = basePath + "/save", method = RequestMethod.POST)
-    public ResponseEntity<Composer> save(@RequestBody Composer composer) {
+    @RequestMapping("{id}")
+    public Composer getById(@PathVariable String id) {
+        return repository.findOne(Long.parseLong(id));
+    }      
+    
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public ResponseEntity<?> save(@RequestBody Composer composer) {
 
         Composer savedComposer = repository.save(composer);
 
-        return new ResponseEntity<>(savedComposer, HttpStatus.OK);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(ServletUriComponentsBuilder
+                        .fromCurrentRequest().path("/{id}")
+                        .buildAndExpand(savedComposer.getComposerId()).toUri());
+        return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 }
