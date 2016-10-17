@@ -200,7 +200,8 @@ CREATE TABLE `useraccount` (
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
