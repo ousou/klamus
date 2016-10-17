@@ -27,7 +27,7 @@ CREATE TABLE `category` (
   `name` varchar(100) NOT NULL,
   `description` text,
   `parent_category_id` bigint(20) DEFAULT NULL,
-  `can_store_here` tinyint(4) NOT NULL,
+  `can_store_here` bit(1) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`category_id`),
   KEY `parent_category_id` (`parent_category_id`),
