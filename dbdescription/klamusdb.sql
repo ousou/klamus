@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
--- Host: localhost    Database: klamusdb
+-- Host: localhost    Database: testrecorddatabase
 -- ------------------------------------------------------
--- Server version	5.5.49-0ubuntu0.14.04.1
+-- Server version	5.7.17-0ubuntu0.16.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,17 +25,26 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `category_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `description` text,
+  `description` mediumtext,
   `parent_category_id` bigint(20) DEFAULT NULL,
   `can_store_here` bit(1) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`category_id`),
   KEY `parent_category_id` (`parent_category_id`),
   KEY `user_id_key` (`user_id`),
-  CONSTRAINT `user_id_key2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `parent_category_id` FOREIGN KEY (`parent_category_id`) REFERENCES `category` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `parent_category_id` FOREIGN KEY (`parent_category_id`) REFERENCES `category` (`category_id`),
+  CONSTRAINT `user_id_key2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `composer`
@@ -48,13 +57,22 @@ CREATE TABLE `composer` (
   `composer_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(100) NOT NULL,
   `first_names` varchar(200) DEFAULT NULL,
-  `description` text,
+  `description` mediumtext,
   `year_of_birth` int(11) DEFAULT NULL,
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`composer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `composer`
+--
+
+LOCK TABLES `composer` WRITE;
+/*!40000 ALTER TABLE `composer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `composer` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `conductor`
@@ -67,13 +85,22 @@ CREATE TABLE `conductor` (
   `conductor_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(100) NOT NULL,
   `first_names` varchar(200) DEFAULT NULL,
-  `description` text,
+  `description` mediumtext,
   `year_of_birth` int(11) DEFAULT NULL,
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`conductor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `conductor`
+--
+
+LOCK TABLES `conductor` WRITE;
+/*!40000 ALTER TABLE `conductor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `conductor` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `record`
@@ -85,7 +112,7 @@ DROP TABLE IF EXISTS `record`;
 CREATE TABLE `record` (
   `record_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
-  `description` text,
+  `description` mediumtext,
   `storage_id` bigint(20) DEFAULT NULL,
   `main_composer_id` bigint(20) DEFAULT NULL,
   `sub_storage_place` varchar(50) DEFAULT NULL,
@@ -94,17 +121,26 @@ CREATE TABLE `record` (
   `record_label` varchar(100) DEFAULT NULL,
   `record_type` varchar(50) DEFAULT NULL,
   `year` int(11) DEFAULT NULL,
-  `extra_info` text,
+  `extra_info` mediumtext,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`record_id`),
   KEY `storage_id` (`storage_id`),
   KEY `main_composer_id` (`main_composer_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `main_composer_id` FOREIGN KEY (`main_composer_id`) REFERENCES `composer` (`composer_id`),
-  CONSTRAINT `storage_id` FOREIGN KEY (`storage_id`) REFERENCES `storage` (`storage_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CONSTRAINT `storage_id` FOREIGN KEY (`storage_id`) REFERENCES `storage` (`storage_id`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `record`
+--
+
+LOCK TABLES `record` WRITE;
+/*!40000 ALTER TABLE `record` DISABLE KEYS */;
+/*!40000 ALTER TABLE `record` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `record_rendition`
@@ -121,8 +157,17 @@ CREATE TABLE `record_rendition` (
   KEY `rendition_id` (`rendition_id`),
   CONSTRAINT `record_id` FOREIGN KEY (`record_id`) REFERENCES `record` (`record_id`),
   CONSTRAINT `rendition_id` FOREIGN KEY (`rendition_id`) REFERENCES `rendition` (`rendition_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `record_rendition`
+--
+
+LOCK TABLES `record_rendition` WRITE;
+/*!40000 ALTER TABLE `record_rendition` DISABLE KEYS */;
+/*!40000 ALTER TABLE `record_rendition` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `rendition`
@@ -137,16 +182,25 @@ CREATE TABLE `rendition` (
   `work_id` bigint(20) NOT NULL,
   `soloist_id` bigint(20) DEFAULT NULL,
   `conductor_id` bigint(20) DEFAULT NULL,
-  `description` text,
+  `description` mediumtext,
   PRIMARY KEY (`rendition_id`),
   KEY `work_id` (`work_id`),
   KEY `soloist_id` (`soloist_id`),
   KEY `conductor_id` (`conductor_id`),
-  CONSTRAINT `work_id` FOREIGN KEY (`work_id`) REFERENCES `work` (`work_id`),
+  CONSTRAINT `conductor_id` FOREIGN KEY (`conductor_id`) REFERENCES `conductor` (`conductor_id`),
   CONSTRAINT `soloist_id` FOREIGN KEY (`soloist_id`) REFERENCES `soloist` (`soloist_id`),
-  CONSTRAINT `conductor_id` FOREIGN KEY (`conductor_id`) REFERENCES `conductor` (`conductor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `work_id` FOREIGN KEY (`work_id`) REFERENCES `work` (`work_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rendition`
+--
+
+LOCK TABLES `rendition` WRITE;
+/*!40000 ALTER TABLE `rendition` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rendition` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `soloist`
@@ -159,13 +213,22 @@ CREATE TABLE `soloist` (
   `soloist_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(100) NOT NULL,
   `first_names` varchar(200) DEFAULT NULL,
-  `description` text,
+  `description` mediumtext,
   `year_of_birth` int(11) DEFAULT NULL,
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`soloist_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `soloist`
+--
+
+LOCK TABLES `soloist` WRITE;
+/*!40000 ALTER TABLE `soloist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `soloist` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `storage`
@@ -177,20 +240,29 @@ DROP TABLE IF EXISTS `storage`;
 CREATE TABLE `storage` (
   `storage_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `description` text,
+  `description` mediumtext,
   `parent_storage_id` bigint(20) DEFAULT NULL,
   `can_store_here` tinyint(4) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`storage_id`),
   KEY `parent_storage_id` (`parent_storage_id`),
   KEY `user_id_key` (`user_id`),
-  CONSTRAINT `user_id_key` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `parent_storage_id` FOREIGN KEY (`parent_storage_id`) REFERENCES `storage` (`storage_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  CONSTRAINT `parent_storage_id` FOREIGN KEY (`parent_storage_id`) REFERENCES `storage` (`storage_id`),
+  CONSTRAINT `user_id_key` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `user`
+-- Dumping data for table `storage`
+--
+
+LOCK TABLES `storage` WRITE;
+/*!40000 ALTER TABLE `storage` DISABLE KEYS */;
+/*!40000 ALTER TABLE `storage` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `useraccount`
 --
 
 DROP TABLE IF EXISTS `useraccount`;
@@ -202,8 +274,17 @@ CREATE TABLE `useraccount` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `useraccount`
+--
+
+LOCK TABLES `useraccount` WRITE;
+/*!40000 ALTER TABLE `useraccount` DISABLE KEYS */;
+/*!40000 ALTER TABLE `useraccount` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `work`
@@ -218,14 +299,23 @@ CREATE TABLE `work` (
   `category_id` bigint(20) NOT NULL,
   `composer_id` bigint(20) NOT NULL,
   `index` tinyint(4) NOT NULL,
-  `description` text,
+  `description` mediumtext,
   PRIMARY KEY (`work_id`),
   KEY `category_id` (`category_id`),
   KEY `composer_id` (`composer_id`),
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
   CONSTRAINT `composer_id` FOREIGN KEY (`composer_id`) REFERENCES `composer` (`composer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `work`
+--
+
+LOCK TABLES `work` WRITE;
+/*!40000 ALTER TABLE `work` DISABLE KEYS */;
+/*!40000 ALTER TABLE `work` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -236,4 +326,4 @@ CREATE TABLE `work` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-09 16:03:53
+-- Dump completed on 2017-04-10 20:50:24
