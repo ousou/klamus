@@ -49,7 +49,7 @@ public class Soloist implements Serializable {
         this.yearOfDeath = yearOfDeath;
     }
     
-    public long getSoloistId() {
+    public Long getSoloistId() {
         return soloistId;
     }
 

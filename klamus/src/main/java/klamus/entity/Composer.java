@@ -48,7 +48,7 @@ public class Composer implements Serializable {
         this.yearOfDeath = yearOfDeath;
     }
     
-    public long getComposerId() {
+    public Long getComposerId() {
         return composerId;
     }
 

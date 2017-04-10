@@ -49,7 +49,7 @@ public class Conductor implements Serializable {
         this.yearOfDeath = yearOfDeath;
     }
     
-    public long getConductorId() {
+    public Long getConductorId() {
         return conductorId;
     }
 
