@@ -37,7 +37,7 @@ public class CategoryController {
         return repository.findOne(Long.parseLong(id));
     }      
     
-    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Category category) {
 
         Category savedCategory = repository.save(category);

@@ -6,7 +6,6 @@ package klamus.restcontroller;
  */
 
 import java.util.List;
-import klamus.entity.Composer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,16 +44,15 @@ public class SoloistController {
         return repository.findOne(Long.parseLong(id));
     }    
     
-    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Soloist soloist) {
 
         Soloist savedSoloist = repository.save(soloist);
-
+        
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                         .fromCurrentRequest().path("/{id}")
                         .buildAndExpand(savedSoloist.getSoloistId()).toUri());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
-//        return new ResponseEntity<>(savedSoloist, HttpStatus.OK);
     }    
 }

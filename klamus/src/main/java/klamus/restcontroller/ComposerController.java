@@ -43,7 +43,7 @@ public class ComposerController {
         return repository.findOne(Long.parseLong(id));
     }      
     
-    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Composer composer) {
 
         Composer savedComposer = repository.save(composer);

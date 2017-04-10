@@ -44,7 +44,7 @@ public class ConductorController {
         return repository.findOne(Long.parseLong(id));
     }       
     
-    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Conductor conductor) {
 
         Conductor savedConductor = repository.save(conductor);

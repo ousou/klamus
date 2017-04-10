@@ -35,7 +35,7 @@ public class UserAccountController {
         return repository.findOne(Long.parseLong(id));
     }      
     
-    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody UserAccount userAccount) {
 
         UserAccount savedUserAccount = repository.save(userAccount);
