@@ -23,7 +23,7 @@ public class Soloist implements Serializable {
     private String lastName;
     private String firstNames;
     private String info;
-    @Column(name="description", columnDefinition="TEXT")
+    @Column(name="description", columnDefinition="mediumtext")
     private String description;
     private Integer yearOfBirth;
     private Integer yearOfDeath;

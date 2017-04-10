@@ -19,7 +19,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long categoryId;
     private String name;
-    @Column(name="description", columnDefinition="TEXT")
+    @Column(name="description", columnDefinition="mediumtext")
     private Long parentCategoryId;
     private Boolean canStoreHere;
     private Long userId;
