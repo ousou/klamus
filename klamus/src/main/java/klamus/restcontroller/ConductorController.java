@@ -30,12 +30,10 @@ public class ConductorController {
     ConductorRepository repository;    
     
     @RequestMapping("")
-    public List<Conductor> get(@RequestParam String lastName) {
-        return repository.findByLastName(lastName);
-    }
-    
-    @RequestMapping("/getAll")
-    public Iterable<Conductor> getAll() {
+    public Iterable<Conductor> get(@RequestParam(required = false) String lastName) {
+        if (lastName != null) {
+            return repository.findByLastName(lastName);
+        }
         return repository.findAll();
     }
     

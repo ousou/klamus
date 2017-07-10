@@ -30,12 +30,10 @@ public class SoloistController {
     SoloistRepository repository;    
     
     @RequestMapping("")
-    public List<Soloist> get(@RequestParam String lastName) {
-        return repository.findByLastName(lastName);
-    }
-    
-    @RequestMapping("/getAll")
-    public Iterable<Soloist> getAll() {
+    public Iterable<Soloist> get(@RequestParam(required = false) String lastName) {
+        if (lastName != null) {
+            return repository.findByLastName(lastName);
+        }
         return repository.findAll();
     }
     
