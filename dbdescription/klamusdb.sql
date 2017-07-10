@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
 --
 -- Host: localhost    Database: testrecorddatabase
 -- ------------------------------------------------------
--- Server version	5.7.17-0ubuntu0.16.04.2
+-- Server version	5.7.18-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,15 +38,6 @@ CREATE TABLE `category` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `category`
---
-
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `composer`
 --
 
@@ -62,17 +53,8 @@ CREATE TABLE `composer` (
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`composer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `composer`
---
-
-LOCK TABLES `composer` WRITE;
-/*!40000 ALTER TABLE `composer` DISABLE KEYS */;
-/*!40000 ALTER TABLE `composer` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `conductor`
@@ -92,15 +74,6 @@ CREATE TABLE `conductor` (
   PRIMARY KEY (`conductor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conductor`
---
-
-LOCK TABLES `conductor` WRITE;
-/*!40000 ALTER TABLE `conductor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `conductor` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `record`
@@ -129,18 +102,9 @@ CREATE TABLE `record` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `main_composer_id` FOREIGN KEY (`main_composer_id`) REFERENCES `composer` (`composer_id`),
   CONSTRAINT `storage_id` FOREIGN KEY (`storage_id`) REFERENCES `storage` (`storage_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `useraccount` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `record`
---
-
-LOCK TABLES `record` WRITE;
-/*!40000 ALTER TABLE `record` DISABLE KEYS */;
-/*!40000 ALTER TABLE `record` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `record_rendition`
@@ -159,15 +123,6 @@ CREATE TABLE `record_rendition` (
   CONSTRAINT `rendition_id` FOREIGN KEY (`rendition_id`) REFERENCES `rendition` (`rendition_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `record_rendition`
---
-
-LOCK TABLES `record_rendition` WRITE;
-/*!40000 ALTER TABLE `record_rendition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `record_rendition` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `rendition`
@@ -194,15 +149,6 @@ CREATE TABLE `rendition` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `rendition`
---
-
-LOCK TABLES `rendition` WRITE;
-/*!40000 ALTER TABLE `rendition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rendition` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `soloist`
 --
 
@@ -218,17 +164,8 @@ CREATE TABLE `soloist` (
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`soloist_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `soloist`
---
-
-LOCK TABLES `soloist` WRITE;
-/*!40000 ALTER TABLE `soloist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `soloist` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `storage`
@@ -248,18 +185,9 @@ CREATE TABLE `storage` (
   KEY `parent_storage_id` (`parent_storage_id`),
   KEY `user_id_key` (`user_id`),
   CONSTRAINT `parent_storage_id` FOREIGN KEY (`parent_storage_id`) REFERENCES `storage` (`storage_id`),
-  CONSTRAINT `user_id_key` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  CONSTRAINT `user_id_key` FOREIGN KEY (`user_id`) REFERENCES `useraccount` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `storage`
---
-
-LOCK TABLES `storage` WRITE;
-/*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-/*!40000 ALTER TABLE `storage` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `useraccount`
@@ -274,17 +202,8 @@ CREATE TABLE `useraccount` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `useraccount`
---
-
-LOCK TABLES `useraccount` WRITE;
-/*!40000 ALTER TABLE `useraccount` DISABLE KEYS */;
-/*!40000 ALTER TABLE `useraccount` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `work`
@@ -307,15 +226,6 @@ CREATE TABLE `work` (
   CONSTRAINT `composer_id` FOREIGN KEY (`composer_id`) REFERENCES `composer` (`composer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `work`
---
-
-LOCK TABLES `work` WRITE;
-/*!40000 ALTER TABLE `work` DISABLE KEYS */;
-/*!40000 ALTER TABLE `work` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -326,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-10 20:50:24
+-- Dump completed on 2017-07-10 20:20:19
