@@ -46,10 +46,7 @@ public class SoloistController {
 
         Soloist savedSoloist = repository.save(soloist);
         
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedSoloist.getSoloistId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedSoloist.getSoloistId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
     }    
 }

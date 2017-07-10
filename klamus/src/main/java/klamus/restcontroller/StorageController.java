@@ -45,10 +45,7 @@ public class StorageController {
 
         Storage savedStorage = repository.save(soloist);
         
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedStorage.getStorageId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedStorage.getStorageId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
     }    
 }

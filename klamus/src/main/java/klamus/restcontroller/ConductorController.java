@@ -46,10 +46,7 @@ public class ConductorController {
 
         Conductor savedConductor = repository.save(conductor);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedConductor.getConductorId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedConductor.getConductorId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }    
 }

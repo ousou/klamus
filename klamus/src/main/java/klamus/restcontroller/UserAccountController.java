@@ -40,10 +40,7 @@ public class UserAccountController {
 
         UserAccount savedUserAccount = repository.save(userAccount);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedUserAccount.getUserId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedUserAccount.getUserId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 }

@@ -44,10 +44,8 @@ public class WorkController {
 
         Work savedWork = repository.save(soloist);
         
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedWork.getWorkId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedWork.getWorkId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
     }     
+
 }

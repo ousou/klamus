@@ -45,10 +45,7 @@ public class ComposerController {
 
         Composer savedComposer = repository.save(composer);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedComposer.getComposerId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedComposer.getComposerId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 }

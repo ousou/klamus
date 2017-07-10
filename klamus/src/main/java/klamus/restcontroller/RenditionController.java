@@ -44,10 +44,7 @@ public class RenditionController {
 
         Rendition savedRendition = repository.save(soloist);
         
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedRendition.getRenditionId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedRendition.getRenditionId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
     }    
 }

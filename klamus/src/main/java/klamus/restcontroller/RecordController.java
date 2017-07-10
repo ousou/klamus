@@ -43,12 +43,9 @@ public class RecordController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Record soloist) {
 
-        Record savedRecotd = repository.save(soloist);
+        Record savedRecord = repository.save(soloist);
         
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedRecotd.getRecordId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedRecord.getRecordId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
     }    
 }

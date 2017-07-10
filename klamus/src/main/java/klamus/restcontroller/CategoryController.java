@@ -42,10 +42,7 @@ public class CategoryController {
 
         Category savedCategory = repository.save(category);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(savedCategory.getCategoryId()).toUri());
+        HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedCategory.getCategoryId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
     }
 }
