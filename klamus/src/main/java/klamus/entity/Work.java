@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @author Sebastian Björkqvist <sebastian@sebastianbjorkqvist.com>
  */
 @Entity
-@Table(name = "work")
+@Table(name = "musicalwork")
 public class Work implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,27 +21,27 @@ public class Work implements Serializable {
     private String name;    
     private Long categoryId;
     private Long composerId;
-    private Byte index;
+    private Integer orderNumber;
     @Column(name = "description", columnDefinition = "mediumtext")
     private String description;    
 
     protected Work() {
     }
 
-    public Work(String name, Long categoryId, Long composerId, Byte index, String description) {
+    public Work(String name, Long categoryId, Long composerId, Integer orderNumber, String description) {
         this.name = name;
         this.categoryId = categoryId;
         this.composerId = composerId;
-        this.index = index;
+        this.orderNumber = orderNumber;
         this.description = description;
     }
 
-    public Work(Long workId, String name, Long categoryId, Long composerId, Byte index, String description) {
+    public Work(Long workId, String name, Long categoryId, Long composerId, Integer orderNumber, String description) {
         this.workId = workId;
         this.name = name;
         this.categoryId = categoryId;
         this.composerId = composerId;
-        this.index = index;
+        this.orderNumber = orderNumber;
         this.description = description;
     }
 
@@ -61,8 +61,8 @@ public class Work implements Serializable {
         return composerId;
     }
 
-    public Byte getIndex() {
-        return index;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public String getDescription() {
