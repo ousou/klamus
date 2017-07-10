@@ -23,23 +23,23 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @ComponentScan()
-@RequestMapping("/soloist/")
+@RequestMapping("/soloist")
 public class SoloistController {
     
     @Autowired
     SoloistRepository repository;    
     
-    @RequestMapping("get")
-    public List<Soloist> getByName(@RequestParam(value="name") String name) {
-        return repository.findByLastName(name);
+    @RequestMapping("")
+    public List<Soloist> get(@RequestParam String lastName) {
+        return repository.findByLastName(lastName);
     }
     
-    @RequestMapping("getAll")
+    @RequestMapping("/getAll")
     public Iterable<Soloist> getAll() {
         return repository.findAll();
     }
     
-    @RequestMapping("{id}")
+    @RequestMapping("/{id}")
     public Soloist getById(@PathVariable String id) {
         return repository.findOne(Long.parseLong(id));
     }    

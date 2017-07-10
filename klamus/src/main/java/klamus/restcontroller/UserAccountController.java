@@ -20,17 +20,17 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 @ComponentScan()
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class UserAccountController {
     @Autowired
     UserAccountRepository repository;     
     
-    @RequestMapping("getAll")
+    @RequestMapping("")
     public Iterable<UserAccount> getAll() {
         return repository.findAll();
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping("/{id}")
     public UserAccount getById(@PathVariable String id) {
         return repository.findOne(Long.parseLong(id));
     }      

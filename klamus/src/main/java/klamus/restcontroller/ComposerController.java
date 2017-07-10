@@ -22,23 +22,23 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @ComponentScan()
-@RequestMapping("/composer/")
+@RequestMapping("/composer")
 public class ComposerController {
 
     @Autowired
     ComposerRepository repository;
 
-    @RequestMapping("get")
-    public List<Composer> get(@RequestParam(value = "name") String name) {
-        return repository.findByLastName(name);
+    @RequestMapping("")
+    public List<Composer> get(@RequestParam String lastName) {
+        return repository.findByLastName(lastName);
     }
 
-    @RequestMapping("getAll")
+    @RequestMapping("/getAll")
     public Iterable<Composer> getAll() {
         return repository.findAll();
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping("/{id}")
     public Composer getById(@PathVariable String id) {
         return repository.findOne(Long.parseLong(id));
     }      

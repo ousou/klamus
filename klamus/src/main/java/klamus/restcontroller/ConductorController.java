@@ -23,23 +23,23 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @ComponentScan()
-@RequestMapping("/conductor/")
+@RequestMapping("/conductor")
 public class ConductorController {
 
     @Autowired
     ConductorRepository repository;    
     
-    @RequestMapping("get")
-    public List<Conductor> get(@RequestParam(value="name") String name) {
-        return repository.findByLastName(name);
+    @RequestMapping("")
+    public List<Conductor> get(@RequestParam String lastName) {
+        return repository.findByLastName(lastName);
     }
     
-    @RequestMapping("getAll")
+    @RequestMapping("/getAll")
     public Iterable<Conductor> getAll() {
         return repository.findAll();
     }
     
-    @RequestMapping("{id}")
+    @RequestMapping("/{id}")
     public Conductor getById(@PathVariable String id) {
         return repository.findOne(Long.parseLong(id));
     }       

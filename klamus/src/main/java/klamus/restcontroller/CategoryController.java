@@ -21,18 +21,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 @ComponentScan()
-@RequestMapping("/category/")
+@RequestMapping("/category")
 public class CategoryController {
     
     @Autowired
     CategoryRepository repository;     
     
-    @RequestMapping("getAll")
+    @RequestMapping("")
     public Iterable<Category> getAll(@RequestParam(value = "userId") String userId) {
         return repository.findByUserId(Long.parseLong(userId));
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping("/{id}")
     public Category getById(@PathVariable String id) {
         return repository.findOne(Long.parseLong(id));
     }      
