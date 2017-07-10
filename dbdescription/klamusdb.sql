@@ -31,10 +31,10 @@ CREATE TABLE `category` (
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`category_id`),
   KEY `parent_category_id` (`parent_category_id`),
-  KEY `user_id_key` (`user_id`),
+  KEY `user_id_key2` (`user_id`),
   CONSTRAINT `parent_category_id` FOREIGN KEY (`parent_category_id`) REFERENCES `category` (`category_id`),
-  CONSTRAINT `user_id_key2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `user_id_key2` FOREIGN KEY (`user_id`) REFERENCES `useraccount` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `conductor` (
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`conductor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `rendition` (
   CONSTRAINT `conductor_id` FOREIGN KEY (`conductor_id`) REFERENCES `conductor` (`conductor_id`),
   CONSTRAINT `soloist_id` FOREIGN KEY (`soloist_id`) REFERENCES `soloist` (`soloist_id`),
   CONSTRAINT `work_id` FOREIGN KEY (`work_id`) REFERENCES `work` (`work_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +164,7 @@ CREATE TABLE `soloist` (
   `year_of_death` int(11) DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`soloist_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `work` (
   KEY `composer_id` (`composer_id`),
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
   CONSTRAINT `composer_id` FOREIGN KEY (`composer_id`) REFERENCES `composer` (`composer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -236,4 +236,4 @@ CREATE TABLE `work` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-10 20:20:19
+-- Dump completed on 2017-07-10 20:39:16
