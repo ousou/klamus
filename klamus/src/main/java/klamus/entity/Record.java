@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -32,6 +33,8 @@ public class Record implements Serializable {
     @Column(name = "extra_info", columnDefinition = "mediumtext")
     private String extraInfo;
     private Long userId;
+    @Transient
+    private Iterable<Long> renditionIds;
 
     protected Record() {
     }
@@ -118,6 +121,13 @@ public class Record implements Serializable {
     public Long getUserId() {
         return userId;
     }
-    
+
+    public Iterable<Long> getRenditionIds() {
+        return renditionIds;
+    }
+
+    public void setRenditionIds(Iterable<Long> renditionIds) {
+        this.renditionIds = renditionIds;
+    }
     
 }
