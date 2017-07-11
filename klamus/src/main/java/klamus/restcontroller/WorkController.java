@@ -40,9 +40,9 @@ public class WorkController {
     }    
     
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> save(@RequestBody Work soloist) {
+    public ResponseEntity<?> save(@RequestBody Work work) {
 
-        Work savedWork = repository.save(soloist);
+        Work savedWork = repository.save(work);
         
         HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedWork.getWorkId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        

@@ -41,9 +41,9 @@ public class StorageController {
     }    
     
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> save(@RequestBody Storage soloist) {
+    public ResponseEntity<?> save(@RequestBody Storage storage) {
 
-        Storage savedStorage = repository.save(soloist);
+        Storage savedStorage = repository.save(storage);
         
         HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedStorage.getStorageId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        

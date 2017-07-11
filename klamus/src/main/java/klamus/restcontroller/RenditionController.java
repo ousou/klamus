@@ -40,9 +40,9 @@ public class RenditionController {
     }      
     
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> save(@RequestBody Rendition soloist) {
+    public ResponseEntity<?> save(@RequestBody Rendition rendition) {
 
-        Rendition savedRendition = repository.save(soloist);
+        Rendition savedRendition = repository.save(rendition);
         
         HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedRendition.getRenditionId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
