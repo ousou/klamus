@@ -50,9 +50,9 @@ public class RecordController {
     }       
     
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> save(@RequestBody Record soloist) {
+    public ResponseEntity<?> save(@RequestBody Record record) {
 
-        Record savedRecord = repository.save(soloist);
+        Record savedRecord = repository.save(record);
         
         HttpHeaders httpHeaders = new ControllerHelper().getHeadersForCreatedResource(savedRecord.getRecordId());
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);        
