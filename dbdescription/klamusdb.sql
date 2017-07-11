@@ -138,7 +138,7 @@ DROP TABLE IF EXISTS `record_rendition`;
 CREATE TABLE `record_rendition` (
   `record_id` bigint(20) NOT NULL,
   `rendition_id` bigint(20) NOT NULL,
-  `order_number` tinyint(4) NOT NULL,
+  `order_number` int(11) NOT NULL,
   PRIMARY KEY (`rendition_id`),
   UNIQUE KEY `record_id_2` (`record_id`,`order_number`),
   KEY `record_id` (`record_id`),
@@ -238,4 +238,4 @@ CREATE TABLE `useraccount` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-11 18:20:09
+-- Dump completed on 2017-07-11 18:24:23
